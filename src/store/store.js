@@ -16,11 +16,33 @@ export const store = new Vuex.Store({
         }
     },
     mutations: {
-        increment: state => {
-            state.counter++;
+        //mutation需要同步发生
+        //mutation对state的改变都是同步发生的
+        //mutation只能同步改变state,但vuex为我们提供了Actions，这让我们做一些异步的动作，然后commit给mutations,好像是先来做一些异步的动作，然后通过commit的方式告诉mutation
+        
+        increment: (state,payload) => {
+            state.counter += payload;
         },
-        decrement: state => {
-            state.counter--;
+        decrement: (state, payload) => {
+            state.counter -= payload;
+        }
+    },
+    actions: {
+        increment: (context, payload) => {
+            context.commit('increment', payload);
+        },
+        decrement: ({commit}, payload) => {
+            commit('decrement', payload);
+        },
+        asyncIncrement: ({commit}) => {
+            setTimeout(()=>{
+                commit('increment');
+            },1000);
+        },
+        asyncDecrement: ({commit}) => {
+            setTimeout(()=> {
+                commit('decrement');
+            },1000);
         }
     }
 });
