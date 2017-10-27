@@ -1,5 +1,8 @@
 <template>
-    <p>Another Counter is: {{counter}}</p>
+    <div>
+        <p>Another Counter is: {{counter}}</p>
+        <p>Number of clicks: {{clicks}}</p>
+    </div>
 </template>
 
 
@@ -8,6 +11,9 @@
         computed: {
             counter(){
                 return this.$store.getters.doubleCounter;
+            },
+            clicks(){
+                return this.$store.getters.stringCounter;
             }
         }
     }
