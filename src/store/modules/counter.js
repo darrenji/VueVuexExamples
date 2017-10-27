@@ -1,12 +1,15 @@
+import * as types from '../types';
+
 const state = {
     counter: 0
 };
 
 const getters = {
-    doubleCounter: state => {
+    //告诉javascript引擎，在runtime把这里显示出来
+    [types.DOUBLE_COUNTER]: state => {
             return state.counter * 2;
     },
-    stringCounter: state => {
+    [types.CLICK_COUNTER]: state => {
             return state.counter + ' clicks';
      }
 };
